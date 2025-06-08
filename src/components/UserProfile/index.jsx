@@ -33,6 +33,7 @@ function UserProfile() {
 
   const isAdmin = dataUser.rol === "admin";
   const IconMenu = isAdmin ? icon.moreVert : icon.arrowDown;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -53,6 +54,18 @@ function UserProfile() {
     navigate(routesPages.getOperativeFeedback);
   };
 
+  const renderAdminMenuButton = () => (
+    <IconButton edge="end" onClick={handleClick}>
+      <IconMenu
+        sx={{
+          color: "white",
+          fontSize: 24,
+          mr: widthDrawer === 80 ? -2 : 0,
+        }}
+      />
+    </IconButton>
+  );
+
   const getInitials = (name) => {
     if (!name) return "?";
     const words = name.trim().split(" ");
@@ -67,7 +80,7 @@ function UserProfile() {
       sx={
         isAdmin
           ? { borderTop: "2px solid", borderTopColor: "divider", mt: 2 }
-          : { mt: 1, width: 350, display: "flex", alignItems: "center" }
+          : { mt: 1, width: 50, display: "flex", alignItems: "center" }
       }
     >
       <ListItem
@@ -77,21 +90,13 @@ function UserProfile() {
           alignItems: "center",
           width: "100%",
         }}
-        secondaryAction={
-          <IconButton edge="end" onClick={handleClick}>
-            <IconMenu
-              sx={{
-                color: isAdmin ? "white" : "black",
-                fontSize: isAdmin ? 24 : 32,
-                mr: widthDrawer === 80?   -2 : 0
-              }}
-            />
-          </IconButton>
-        }
+        secondaryAction={isAdmin && renderAdminMenuButton()}
       >
         <ListItemAvatar>
           <Avatar
+            onClick={handleClick}
             sx={{
+              cursor: "pointer",
               bgcolor: isAdmin ? "#3949ab" : "#1976d2",
               color: "white",
               fontWeight: "bold",
@@ -101,9 +106,15 @@ function UserProfile() {
           </Avatar>
         </ListItemAvatar>
         <ListItemText
-          primary={widthDrawer === 250 ? dataUser?.name || "Usuario" : ""}
+          primary={
+            widthDrawer === 250 && isAdmin
+              ? dataUser?.name || "Usuario"
+              : ""
+          }
           secondary={
-            widthDrawer === 250 ? dataUser?.email || "Correo no disponible" : ""
+            widthDrawer === 250 && isAdmin
+              ? dataUser?.email || "Correo no disponible"
+              : ""
           }
           secondaryTypographyProps={{ color: isAdmin ? "white" : "black" }}
         />
