@@ -10,6 +10,9 @@ const routesPages = {
 
   //rutas operativas
   getOperativeHome: "/operative/home",
+  getOperativeMark: "/operative/mark",
+  getOperativeStore: "/operative/store",
+   getOperativeCategory: "/operative/category",
   getOperativeFeedback: "/operative/feedback",
 };
 

@@ -18,10 +18,29 @@ function NavItem({ item, isParents = false, setSelectID = null, level = 0, orien
   };
 
   const Icon = item.icon;
+
+  // Colores configurables
+  const listItemIconColor = orientation === "horizontal"
+    ? isSelected ? "rgb(0, 0, 0)" : "rgb(0, 0, 0)"
+    : isSelected ? "rgb(255, 255, 255)" : "rgb(255, 255, 255)";
+
+  const listItemTextColor = orientation === "horizontal"
+    ? isSelected ? "rgb(0, 0, 0)" : "rgb(0, 0, 0)"
+    : isSelected ? "rgb(255, 255, 255)" : "#8e8e8e";
+
+  const backgroundColor = isSelected
+    ? (orientation === "horizontal" ? "rgb(0, 0, 0)" : "rgb(0, 0, 0)")
+    : "inherit";
+
+ const hoverBackgroundColor = orientation === "horizontal"
+  ? "#DBAF91"
+  : "rgba(165, 165, 165, 0.2)"; // color más transparente
+
+
   const itemIcon = Icon ? (
     <ListItemIcon
       sx={{
-        color: isSelected ? "#fff" : "#8e8e8e",
+        color: listItemIconColor,
         minWidth: 36,
         transition: "color 0.3s",
       }}
@@ -34,22 +53,21 @@ function NavItem({ item, isParents = false, setSelectID = null, level = 0, orien
     <ListItemButton
       component={Link}
       to={path}
-      disabled={item.disabled}
       selected={isSelected}
       onClick={handleItemClick}
       sx={{
         pl: orientation === "vertical" ? 2 + level * 2 : 1,
         pr: orientation === "horizontal" ? 2 : undefined,
-        color: isSelected ? "#fff" : "#8e8e8e",
-        backgroundColor: isSelected ? "rgba(255, 255, 255, 0.08)" : "inherit",
-        display: orientation === "horizontal" ? "flex" : undefined,
-        flexDirection: orientation === "horizontal" ? "row" : "row",
+        color: listItemTextColor,
+        backgroundColor: backgroundColor,
+        display: "flex",
+        flexDirection: "row",
         alignItems: "center",
         "&:hover": {
-          backgroundColor:  orientation === "horizontal"? "#DBAF91": "rgba(255, 255, 255, 0.1)",
-          color: "#fff",
+          backgroundColor: hoverBackgroundColor,
+          color: "rgb(255, 255, 255)",
           "& .MuiListItemIcon-root": {
-            color: "#fff",
+            color: "rgb(255, 255, 255)",
           },
         },
         transition: "background-color 0.3s, color 0.3s",

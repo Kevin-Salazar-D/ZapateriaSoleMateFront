@@ -44,7 +44,7 @@ function Header() {
       sx={{
         flexGrow: 1,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
         px: 2, // un poco de padding opcional
       }}
