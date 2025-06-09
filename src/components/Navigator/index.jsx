@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { Drawer, Toolbar, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import NavGroup from "./NavGroup";
 
-//importancion de constantes
-import menuItems from "../../../../constants/menuItems";
-
-function Navigation() {
-  // Estado para manejar el ID seleccionado
+function Navigator({ menuItems, orientation = "vertical" }) {
   const [selectedID, setSelectedID] = useState(null);
 
   const handleSelectID = (id) => {
@@ -15,7 +11,14 @@ function Navigation() {
   };
 
   return (
-    <Box sx={{ overflow: "auto" }}>
+    <Box
+      sx={{
+        overflow: "auto",
+        display: "flex",
+        flexDirection: orientation === "vertical" ? "column" : "row",
+        gap: 2,
+      }}
+    >
       {menuItems.items.map((group, index) => (
         <NavGroup
           key={index}
@@ -24,10 +27,12 @@ function Navigation() {
             items: group.children,
           }}
           setSelectID={handleSelectID}
+          selectedID={selectedID}
+           orientation={orientation}
         />
       ))}
     </Box>
   );
 }
 
-export default Navigation;
+export default Navigator;

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Drawer, Box, Divider, IconButton } from "@mui/material";
 import Logo from "../../../components/Logo";
-import Navigation from "../drawer/Navigation";
-import Userprofile from "../../../components/UserProfile";
+import UserProfile from "../../../components/UserProfile";
 import icon from "../../../constants/icons";
 import { useSelector } from "react-redux";
+import Navigator from "../../../components/Navigator";
+import menuItems from "../../../constants/menuItems";
 
 function DrawerAdmin({ onMinimize }) {
   const drawerWidth = useSelector((state) => state.configs.drawerWidth);
@@ -69,8 +70,21 @@ function DrawerAdmin({ onMinimize }) {
 
       <Divider sx={{ borderColor: "#444" }} />
 
-      <Box sx={{ flexGrow: 1, overflow: "auto", transition: "padding 0.3s" }}>
-        <Navigation />
+      <Box
+        sx={{
+          flexGrow: 1,
+          overflow: "auto",
+          display: "flex",
+          flexDirection: "column",
+          px: localWidth === 250 ? 2 : 1,
+          py: 2,
+          transition: "all 0.3s ease-in-out",
+        }}
+      >
+        <Navigator
+          menuItems={menuItems}
+          orientation="vertical" // siempre vertical como pediste
+        />
       </Box>
 
       <Box
@@ -81,7 +95,7 @@ function DrawerAdmin({ onMinimize }) {
           transition: "all 0.3s ease-in-out",
         }}
       >
-        <Userprofile />
+        <UserProfile />
       </Box>
     </Drawer>
   );

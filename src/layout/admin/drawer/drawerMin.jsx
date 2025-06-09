@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Drawer, Box, Divider, IconButton } from "@mui/material";
 import Logo from "../../../components/Logo";
-import Navigation from "../drawer/Navigation";
 import Userprofile from "../../../components/UserProfile";
 import icon from "../../../constants/icons";
 import { useSelector } from "react-redux";
+import menuItems from "../../../constants/menuItems";
+import Navigator from "../../../components/Navigator";
 
 function DrawerMin({ onExpand }) {
   const drawerWidth = useSelector((state) => state.configs.drawerWidth);
@@ -84,7 +85,10 @@ function DrawerMin({ onExpand }) {
           transition: "padding 0.3s ease-in-out",
         }}
       >
-        <Navigation />
+        <Navigator
+          menuItems={menuItems}
+          orientation="vertical" // siempre vertical como pediste
+        />
       </Box>
 
       <Box

@@ -20,7 +20,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import WysiwygIcon from "@mui/icons-material/Wysiwyg";
-
+import CategoryIcon from '@mui/icons-material/Category';
+import BrandingWatermarkTwoToneIcon from '@mui/icons-material/BrandingWatermarkTwoTone';
+import StoreTwoToneIcon from '@mui/icons-material/StoreTwoTone';
 
 const icon = {
   person: PersonIcon,
@@ -45,6 +47,9 @@ const icon = {
   menu: MenuIcon,
   shoppingSelected: ShoppingCartCheckoutIcon,
   wySinwy: WysiwygIcon,
+  category: CategoryIcon,
+  branding: BrandingWatermarkTwoToneIcon,
+  store: StoreTwoToneIcon
 };
 
 export default icon;
